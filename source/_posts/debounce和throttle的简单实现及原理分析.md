@@ -8,13 +8,14 @@ date: 2017-07-03 18:35:46
 tags:
 ---
 
-# `debounce(func, wait)`
+### `debounce(func, wait)`
 
 这是一个防抖动函数，该函数会在`wait` 毫秒之后调用`func`方法。
 
 简单实现：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="js" data-enlighter-theme="godzilla">/**
+```javascript
+/**
  *
  * @param fn  需要执行的函数
  * @param wait 需要延迟执行的时间
@@ -33,7 +34,8 @@ function debounce(fn, wait) {
             fn.apply(self, args);
         }, wait)
     }
-}</pre>
+}
+```
 
 &nbsp;
 
@@ -41,13 +43,13 @@ function debounce(fn, wait) {
 
 &nbsp;
 
-# `throttle(func,wait)`
+### `throttle(func,wait)`
 
 这是一个节流函数，在 `wait` 秒内最多执行 `func` 一次的函数。
 
 简单实现：
-
-<pre class="EnlighterJSRAW" data-enlighter-language="js" data-enlighter-theme="godzilla">/**
+```javascript
+/**
  *
  * @param fn 需要执行的函数
  * @param wait 节流阀的间隔时间
@@ -72,10 +74,9 @@ function throttle(fn, wait) {
             fn.apply(self, args);
         }
     }
-}</pre>
+}
 
-&nbsp;
-
+```
 原理同`debounce`，利用闭包将`timer` 保存起来，每间隔一个`wait` 的时间，执行一次`fn`，在间隔时间内的回调会`clear`上一次的保留的`timer`。
 
 `debounce`和`throttle` 函数是闭包函数使用的经典场景，理解这两个函数对深入理解闭包有很大对帮助。～

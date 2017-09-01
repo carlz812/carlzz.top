@@ -7,7 +7,7 @@ date: 2017-08-09 16:51:59
 tags:
 ---
 
-## 一、为什么JavaScript是单线程？
+### 一、为什么JavaScript是单线程？
 
 `JavaScript`语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。那么，为什么`JavaScript`不能有多个线程呢？这样能提高效率啊。
 
@@ -17,7 +17,7 @@ tags:
 
 为了利用多核`CPU`的计算能力，`HTML5`提出`Web Worker`标准，允许`JavaScript`脚本创建多个线程，但是子线程完全受主线程控制，且不得操作`DOM`。所以，这个新标准并没有改变`JavaScript`单线程的本质。
 
-## 二、任务队列
+### 二、任务队列
 
 单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
 
@@ -43,7 +43,7 @@ tags:
 
 只要主线程空了，就会去读取"任务队列"，这就是`JavaScript`的运行机制。这个过程会不断重复。
 
-## 三、事件和回调函数
+### 三、事件和回调函数
 
 "任务队列"是一个事件的队列（也可以理解成消息的队列），`IO`设备完成一项任务，就在"任务队列"中添加一个事件，表示相关的异步任务可以进入"执行栈"了。主线程读取"任务队列"，就是读取里面有哪些事件。
 
@@ -53,7 +53,7 @@ tags:
 
 "任务队列"是一个先进先出的数据结构，排在前面的事件，优先被主线程读取。主线程的读取过程基本上是自动的，只要执行栈一清空，"任务队列"上第一位的事件就自动进入主线程。但是，由于存在后文提到的"定时器"功能，主线程首先要检查一下执行时间，某些事件只有到了规定的时间，才能返回主线程。
 
-## 四、Event Loop
+### 四、Event Loop
 
 主线程从"任务队列"中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为`Event Loop`（事件循环）。
 
@@ -63,23 +63,26 @@ tags:
 
 上图中，主线程运行的时候，产生堆（`heap`）和栈（`stack`），栈中的代码调用各种外部`API`，它们在"任务队列"中加入各种事件（`click`，`load`，`done`）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。
 
-## 五、定时器
+### 五、定时器
 
 除了放置异步任务的事件，"任务队列"还可以放置定时事件，即指定某些代码在多少时间之后执行。这叫做"定时器"`（timer）`功能，也就是定时执行的代码。
 
 定时器功能主要由`setTimeout()`和`setInterval()`这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。以下主要讨论`setTimeout()`。
 
 `setTimeout()`接受两个参数，第一个是回调函数，第二个是推迟执行的毫秒数。
-> console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>> 
->     <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>> 
->     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>> 
->     `</pre>
-    上面代码的执行结果是`1，3，2`，因为`setTimeout()`将第二行推迟到`1000`毫秒之后执行。
 
-    如果将`setTimeout()`的第二个参数设为`0`，就表示当前代码执行完（执行栈清空）以后，立即执行（`0`毫秒间隔）指定的回调函数。
-    > <pre class=" language-javascript">`> 
->     <span class="token function">setTimeout<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>> 
->     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+```javascript
+console.log(1);
+setTimeout(function(){console.log(2);},1000);
+console.log(3);
+```
+上面代码的执行结果是`1，3，2`，因为`setTimeout()`将第二行推迟到`1000`毫秒之后执行。
+
+如果将`setTimeout()`的第二个参数设为`0`，就表示当前代码执行完（执行栈清空）以后，立即执行（`0`毫秒间隔）指定的回调函数。
+```javascript
+setTimeout(function(){console.log(1);}, 0);
+console.log(2);
+```
 上面代码的执行结果总是`2，1`，因为只有在执行完第二行以后，系统才会去执行"任务队列"中的回调函数。
 
 总之，`setTimeout(fn,0)`的含义是，指定某个任务在主线程最早可得的空闲时间执行，也就是说，尽可能早得执行。它在"任务队列"的尾部添加一个事件，因此要等到同步任务和"任务队列"现有的事件都处理完，才会得到执行。
@@ -88,6 +91,5 @@ tags:
 
 需要注意的是，`setTimeout()`只是将事件插入了"任务队列"，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在`setTimeout()`指定的时间执行。
 
-&nbsp;
 
 本文转自 [JavaScript中的Event Loop  阮一峰](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)

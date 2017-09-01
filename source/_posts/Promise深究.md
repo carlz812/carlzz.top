@@ -7,7 +7,7 @@ date: 2017-08-28 17:23:46
 tags:
 ---
 
-## Promise是什么？
+### Promise是什么？
 
 一直以来都把`promise`当成es6中新增的内置对象。最近看`promise`的实现原理，发现自己对`Promise`的认知一直是错误的。
 
@@ -17,7 +17,7 @@ tags:
 
 简单来说，`Promise`代表一个异步计算的最终结果。使用`Promise`最基础的方式是使用它的then方法，该方法会注册两个回调函数，一个接收`Promise`完成的最终值，一个接收`Promise`被拒绝的原因。
 
-## Promise规范
+### Promise规范
 
 [Promises/A](http://wiki.commonjs.org/wiki/Promises/A)
 
@@ -27,6 +27,6 @@ tags:
 
 `Promises/A+`规范目前只关注如何提供一个可操作的`then`方法，而关于如何创建，决议`Promise`是日后的工作。
 
-## Promise和jQuery.defer
+### Promise和jQuery.defer
 
 个人理解：`jQuery`中的`deferred`对象是`jquery`实现异步编程的一种方式，而`Promise`是另外一种异步编程实现方式，两者间并没有必然的关联，只是在实现上有些地方比较接近。
