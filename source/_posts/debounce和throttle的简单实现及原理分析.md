@@ -37,11 +37,9 @@ function debounce(fn, wait) {
 }
 ```
 
-&nbsp;
 
 这里通过闭包函数，将`timer`暂存在 `debounce` 内部，在频繁触发的事件回调中，函数每次都会执行，但是由于 `clearTimeout(timer)` 的存在，会将在延迟时间内，将未执行的回调`clear`掉，只有在等待`wait`时间之后，没有新的事件触发，才会调用`fn`。
 
-&nbsp;
 
 ### `throttle(func,wait)`
 
@@ -63,7 +61,7 @@ function throttle(fn, wait) {
         var self = this;
         var args = arguments;
         var now = +new Date();
-        if (now &lt; last + wait) {
+        if (now < last + wait) {
             clearTimeout(timer)
             timer = setTimeout(function () {
                 last = now;

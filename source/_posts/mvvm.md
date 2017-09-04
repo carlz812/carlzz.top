@@ -74,8 +74,6 @@ Object.defineProperty(
 
 在解析模板的过程中，遍历节点树，对不同的节点绑定不同的回调函数。
 
-**_参考：_**
-
-##### _[250行实现一个简单的MVVM](https://lovin0730.github.io/2016/12/19/simple-mvvm/) _
-
-##### _[剖析Vue原理&amp;实现双向绑定MVVM](https://segmentfault.com/a/1190000006599500)_
+#### 参考：
+· {% link 250行实现一个简单的MVVM https://lovin0730.github.io/2016/12/19/simple-mvvm %}
+· {% link 剖析Vue原理&amp;实现双向绑定MVVM https://segmentfault.com/a/1190000006599500 %}

@@ -41,7 +41,7 @@ myFunc();
 要说明闭包，`for`循环是最常见的例子
 
 ```javascript
-for (var i = 1; i &lt;= 5; i++) {
+for (var i = 1; i <= 5; i++) {
     setTimeout(function timer() {
         console.log(i);
     }, i * 1000)
@@ -55,7 +55,7 @@ for (var i = 1; i &lt;= 5; i++) {
 
 ###  why?
 
-首先解释下`6`是从哪里来的，这个循环的终止条件不是`i&lt;=5`，而是`i=6`。因此，输出显示的是循环结束时i的最终值。
+首先解释下`6`是从哪里来的，这个循环的终止条件不是`i<=5`，而是`i=6`。因此，输出显示的是循环结束时i的最终值。
 
 即延迟函数的回调会在循环结束时才执行，而此时`i= 6`；
 
@@ -66,7 +66,7 @@ for (var i = 1; i &lt;= 5; i++) {
 `IIFE`会通过声明并立即执行一个函数来创建作用域：
 
 ```javascript
-for (var i = 1; i &lt;= 5; i++) {
+for (var i = 1; i <= 5; i++) {
     (function () {
         setTimeout(function timer() {
             console.log(i);
@@ -83,7 +83,7 @@ for (var i = 1; i &lt;= 5; i++) {
 因此我们需要给`IIFE` 一个自己的变量，用来在迭代中保存i的值：
 
 ```javascript
-for (var i = 1; i &lt;= 5; i++) {
+for (var i = 1; i <= 5; i++) {
     (function (j) {
         setTimeout(function timer() {
             console.log(j);
@@ -104,7 +104,7 @@ for (var i = 1; i &lt;= 5; i++) {
 本质上是将一个块转换成了一个可以关闭的作用域。
 
 ```javascript
-for (let i = 1; i &lt;= 5; i++) {
+for (let i = 1; i <= 5; i++) {
     setTimeout(function () {
         console.log(i);
     }, i * 1000)
@@ -113,6 +113,6 @@ for (let i = 1; i &lt;= 5; i++) {
 
 以上。
 
-参考：
-你不知道的 `javascript` (上)
-[developer.mozilla.org](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+#### 参考：
+·  你不知道的 javascript (上)
+· {% link developer.mozilla.org http://es6.ruanyifeng.com/#docs/promise %}
