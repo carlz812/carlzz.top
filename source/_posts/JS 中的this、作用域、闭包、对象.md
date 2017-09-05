@@ -10,7 +10,7 @@ tags:
   - object
 ---
 
-### 让人头疼的`this`
+#### 让人头疼的`this`
 
 我们在日常开发中经常会用到`this`，在不同的情况下`this`的指向也有所不同，我们常会用一种意会的感觉去判断`this`的指向。以至于当遇到复杂的函数调用时，就分不清`this`的真正指向。
 
@@ -197,7 +197,7 @@ personA.show4()() // personA
 personA.show4().call(personB) // personA
 personA.show4.call(personB)() // personB
 ```
-
+{% blockquote %}
 跟上一段代码相比，只有`show2`方法的输出不同，在 question1 中，`show2`打印出的结果是`window`，在question2中却是`personA`。
 
 对比`personA`和`person1`，两者都是一个对象，唯一不同的是对`personA`来说，它是通过构造函数构造出的对象，但是直观感受上它和`person1`是一样的。
@@ -216,12 +216,10 @@ personA.show4.call(personB)() // personB
 
 我们在`console`中对比两者的作用域就可以看出
 {% img layoutWidth /images/persons.jpg  %}
-
 `personA`的作用域链从构造函数产生的闭包开始，而`person1`的函数作用域仅仅是`global`，于是导致`this`指向不同。
 我们发现，想要真正的理解`this`，就要先知道什么是作用域，什么是闭包。
 
 我们常常说闭包就是能够访问其他函数内部变量的函数，然而这是一种对闭包现象的描述，并不是它的本质与形成的原因。
-
 
 引用红宝书的文字（便于理解，文字顺序稍微调整），来描述这几个点：
 
@@ -260,4 +258,8 @@ func() // print personB
 
 因为在`personA`的`show4`方法，先在`personB`环境下执行，因此`show4`方法中的箭头函数的`this`就指向了`personB`。
 
+我们平常在学习过程中，难免会更倾向于根据经验去推导结论，或者直接去找一些通俗易懂的描述性语句。然而实际上可能并不是最正确的结果。如果想真正掌握它，我们就应该追本溯源的去研究它的内部机制。
 
+{% endblockquote %}
+#### 参考：
+· {% link 从这两套题，重新认识JS的this、作用域、闭包、对象 https://juejin.im/post/59aa71d56fb9a0248d24fae3?utm_source=wechat&from=singlemessage&isappinstalled=0 %}
