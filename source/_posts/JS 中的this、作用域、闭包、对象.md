@@ -197,7 +197,9 @@ personA.show4()() // personA
 personA.show4().call(personB) // personA
 personA.show4.call(personB)() // personB
 ```
-{% blockquote %}
+
+{% blockquote wuomzfx &nbsp; https://github.com/wuomzfx/blog/blob/master/this.md 从这两套题，重新认识JS的this、作用域、闭包、对象 %}
+
 跟上一段代码相比，只有`show2`方法的输出不同，在 question1 中，`show2`打印出的结果是`window`，在question2中却是`personA`。
 
 对比`personA`和`person1`，两者都是一个对象，唯一不同的是对`personA`来说，它是通过构造函数构造出的对象，但是直观感受上它和`person1`是一样的。
@@ -244,22 +246,13 @@ personA.show4.call(personB)() // personB
 
 也就是说在普通情况下，`this`指向调用函数时的对象，在全局执行的时候，就是全局对象。
 
-箭头函数的`this`，只能通过作用域链往上层找，直到找到一个绑定了`this`的函数作用域，并指向调用该普通函数的对象。
+ 箭头函数的`this`，只能通过作用域链往上层找，直到找到一个绑定了`this`的函数作用域，并指向调用该普通函数的对象。或者从现象来描述的话，__箭头函数的this指向声明函数时，最靠近箭头函数的普通函数(假设为 f() )的`this`。但是这个`this`也会因为f调用的环境的不同而发生改变，导致这个现象的原因是这个普通函数会产生一个闭包，将它的变量对象保存在箭头函数的作用域中。__
 
-或者从现象来描述的话，__箭头函数的this指向声明函数时，最靠近箭头函数的普通函数(假设为 f() )的`this`。但是这个`this`也会因为f调用的环境的不同而发生改变，导致这个现象的原因是这个普通函数会产生一个闭包，将它的变量对象保存在箭头函数的作用域中。__
+ 因此`personA`的`show2`方法因为构造函数闭包的关系，指向了构造函数作用域内的`this`，而`show4`先在`personB`环境下执行，因此`show4`方法中的箭头函数的`this`就指向了`personB`。
 
-因此`personA`的`show2`方法因为构造函数闭包的关系，指向了构造函数作用域内的`this`，而
-
-```javascript
-var func = personA.show4.call(personB)
-
-func() // print personB
-```
-
-因为在`personA`的`show4`方法，先在`personB`环境下执行，因此`show4`方法中的箭头函数的`this`就指向了`personB`。
-
-我们平常在学习过程中，难免会更倾向于根据经验去推导结论，或者直接去找一些通俗易懂的描述性语句。然而实际上可能并不是最正确的结果。如果想真正掌握它，我们就应该追本溯源的去研究它的内部机制。
-
+ __我们平常在学习过程中，难免会更倾向于根据经验去推导结论，或者直接去找一些通俗易懂的描述性语句。然而实际上可能并不是最正确的结果。如果想真正掌握它，我们就应该追本溯源的去研究它的内部机制。__
 {% endblockquote %}
+
+
 #### 参考：
 · {% link 从这两套题，重新认识JS的this、作用域、闭包、对象 https://juejin.im/post/59aa71d56fb9a0248d24fae3?utm_source=wechat&from=singlemessage&isappinstalled=0 %}

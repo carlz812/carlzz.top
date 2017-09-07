@@ -8,7 +8,7 @@ date: 2017-07-03 18:35:46
 tags:
 ---
 
-### `debounce(func, wait)`
+#### `debounce(func, wait)`
 
 这是一个防抖动函数，该函数会在`wait` 毫秒之后调用`func`方法。
 
@@ -41,7 +41,7 @@ function debounce(fn, wait) {
 这里通过闭包函数，将`timer`暂存在 `debounce` 内部，在频繁触发的事件回调中，函数每次都会执行，但是由于 `clearTimeout(timer)` 的存在，会将在延迟时间内，将未执行的回调`clear`掉，只有在等待`wait`时间之后，没有新的事件触发，才会调用`fn`。
 
 
-### `throttle(func,wait)`
+#### `throttle(func,wait)`
 
 这是一个节流函数，在 `wait` 秒内最多执行 `func` 一次的函数。
 
