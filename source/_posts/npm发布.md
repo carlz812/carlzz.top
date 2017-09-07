@@ -1,20 +1,23 @@
 ---
 title: 单元测试+travis&coveralls集成+npm发布
-categories:
-  - JavaScript
-date: 2017-09-07 10:51:59
 tags:
   - mocha
   - istanbul
   - travis
   - coveralls
   - npm
+categories:
+  - JavaScript
+date: 2017-09-07 10:51:59
 ---
+
 
 在[`codewars`](https://www.codewars.com) 刷到了很有意思的一道题，题目给出了篱笆密码法的介绍，让你根据介绍写出对应的`encode`和`decode`方法。
 刷过之后感觉非常满足，为了充实下自己的`github`，顺便尝试写写单元测试，我决定整理下将code发布到`npm`。
 
- 晚上九点发布之后，第二天早上来看，发现被下载了151次！！有点小惊喜，完全不知道发生了什么，不过挺开心的，哈哈哈哈哈
+晚上九点发布之后，第二天早上来看，发现被下载了151次！！有点小惊喜，完全不知道发生了什么，不过挺开心的，哈哈哈哈哈
+
+---------
 
 [项目地址  欢迎fork，star](https://github.com/rjdangcc/railFenceCipher)
 
@@ -25,6 +28,8 @@ tags:
 · travis
 · coveralls
 · npm publish
+
+---------
 
 ### Code
 题目链接：
