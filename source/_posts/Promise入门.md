@@ -323,7 +323,7 @@ myFirstPromise.then(function(successMessage){
 
 
 
-#### 参考：
-· {% link ECMAScript 6 入门 阮一峰 http://es6.ruanyifeng.com/#docs/promise %}
+_#### 参考：
+· {% link ECMAScript 6 入门 阮一峰 http://es6.ruanyifeng.com/#docs/promise %}_
 · {% link developer.mozilla.org https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise %}
 · {% link Developer Network https://msdn.microsoft.com/zh-cn/library/dn802833(v=vs.94).aspx %}
