@@ -39,7 +39,7 @@ tags:
 
 下图就是主线程和任务队列的示意图。
 
-![](http://image.beekka.com/blog/2014/bg2014100801.jpg)
+![](http://www.ruanyifeng.com/blogimg/asset/2014/bg2014100801.jpg)
 
 只要主线程空了，就会去读取"任务队列"，这就是`JavaScript`的运行机制。这个过程会不断重复。
 
@@ -59,7 +59,7 @@ tags:
 
 为了更好地理解`Event Loop`，请看下图（转引自Philip Roberts的演讲[《Help, I'm stuck in an event-loop》](http://vimeo.com/96425312)）。
 
-![](http://image.beekka.com/blog/2014/bg2014100802.png)
+![](http://www.ruanyifeng.com/blogimg/asset/2014/bg2014100802.png)
 
 上图中，主线程运行的时候，产生堆（`heap`）和栈（`stack`），栈中的代码调用各种外部`API`，它们在"任务队列"中加入各种事件（`click`，`load`，`done`）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。
 
